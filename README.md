@@ -1,3 +1,2 @@
 DataMiningCup
 =============
-Henry was here.
