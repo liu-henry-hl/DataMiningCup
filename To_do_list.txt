@@ -1,0 +1,24 @@
+Okay, I might have been on the wrong track all these time. >_<
+Don't have enough time anymore. >_<
+
+
+To do list:
+-Decide which predictors we want
+	-> Currently I'm thinking of every column in build_auth_m216 + date(pretend we don't know it's insignificant)
+		+ average transaction amount
+- Filter number of merchants
+	-> Like, get rid of some insignificant transactions. We don't want that. (Open for any ideas if you guys can
+		do it more efficiently)
+	-> Best is to run on individual super industry and then individual industry (George's idea, which is actually a
+		good idea now I think about it.)
+	-> Choose the most significant ones
+	-> I've included the code, just run change the name and predictors accordingly
+- Calculate the frequency of each customer uses credit card on merchants
+	-> In fact, this would be used to calculate the transaction rate for the do_offer_coupon
+- Run an analysis on the remaining predictors
+	-> I'm working on this all night but had been on the wrong track ):
+	-> Hopefully I can figure out by tomorrow morining. ):
+- Using the result of the analysis we have to come up with a linear function that yields est_amt_trxn for do_offer_coupon
+- Slides.........
+	-> I definitely don't know how to do this
+	
