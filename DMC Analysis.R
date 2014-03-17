@@ -47,3 +47,17 @@ merchant_metrics_merge <- merge(merchant_metrics_copy, super_ind_names.new, all.
 View(merchant_metrics_merge)
 
 #validation_auth_copy <- validation_auth_raw
+
+#find the average trxn amount of each customer
+customer_ids = unique(build_auth_m216_copy$acct_id_code)
+customer_info = data.frame(customer_ids, total_trxn_amt=numeric(length(customer_ids)), num_of_trxns=numeric(length(customer_ids)), amt_per_trxn=numeric(length(customer_ids)))
+#View(customer_info)
+customer_idx = 0
+for (i in length(build_auth_m216_copy)) {
+  accts_info = build_auth_m216_copy
+  cur_acct = customer_info
+  if (accts_info$acct_id_code[i] == cur_acct) {
+    cur_acct = cur_acct$total_trxn_amt + accts_info$trxn_amount
+  }
+  
+}
