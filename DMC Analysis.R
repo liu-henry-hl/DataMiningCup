@@ -61,3 +61,6 @@ for (i in length(build_auth_m216_copy)) {
   }
   
 }
+
+#add column specifying whether we want to give each customer a coupon
+customer_info$do_coupon <- ifelse(do_offer_coupon(customer_info$customer_ids), 1, 0))
