@@ -23,7 +23,11 @@ merchant_metrics_raw = read.csv("merchant_metrics.csv",header = T, sep = ",")
 validation_auth_raw = read.csv("validation_auth.csv",header = T, sep = ",")
 
 # Data Copies
-build_auth_m216_copy <- build_auth_m216_raw[build_auth_m216_raw$merchant_code == "M216", ]
+build_auth_m216_copy <- build_auth_m216_raw
+build_auth_m216_copy$merchant_code <- gsub("M", "", build_auth_m216_copy$merchant_code) #strip M from merchant code
+build_auth_m216_copy$trxn_date <- floor((as.Date(build_auth_m216_copy$trxn_date, "%d%b%Y") - as.Date("01JUN2010", "%d%b%Y"))/30.5) #convert dates
+build_auth_m216_copy <- build_auth_m216_copy[build_auth_m216_copy$internet_trxn == "0", ] #filter non-internet trxns
+build_auth_m216_copy <- build_auth_m216_copy[build_auth_m216_copy$merchant_code == "M216", ] #filter merchant m216
 customer_zip_copy <- customer_zip_raw
 merchant_metrics_copy <- merchant_metrics_raw
 validation_auth_copy <- validation_auth_raw
