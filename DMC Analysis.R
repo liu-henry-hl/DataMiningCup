@@ -66,5 +66,13 @@ for (i in 1:nrow(build_auth_m216_copy)) {
       customer_idx = customer_idx + 1
     }
   }
+<<<<<<< HEAD
 }
 #View(customer_info)
+=======
+  
+}
+
+#add column specifying whether we want to give each customer a coupon
+customer_info$do_coupon <- ifelse(do_offer_coupon(customer_info$customer_ids), 1, 0))
+>>>>>>> e09b0b751861de94e6374cc9e955db071653262d
