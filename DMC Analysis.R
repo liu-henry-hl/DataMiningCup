@@ -64,7 +64,8 @@ for (i in 1:nrow(build_auth_m216_copy)) {
   }
 }
 customer_info$amt_per_trxn <- customer_info$total_trxn_amt / customer_info$num_of_trxns
-customer_info$trxn_rate <- find_trxn_rate(customer_info$customer_id)
+#!!!Broken code:!!!
+customer_info$trxn_rate <- apply(customer_info$customer_id, 1, find_trxn_rate)
 #View(customer_info)
 
 #add column specifying whether we want to give each customer a coupon
