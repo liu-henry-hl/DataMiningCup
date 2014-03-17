@@ -49,15 +49,22 @@ View(merchant_metrics_merge)
 #validation_auth_copy <- validation_auth_raw
 
 #find the average trxn amount of each customer
-customer_ids = unique(build_auth_m216_copy$acct_id_code)
-customer_info = data.frame(customer_ids, total_trxn_amt=numeric(length(customer_ids)), num_of_trxns=numeric(length(customer_ids)), amt_per_trxn=numeric(length(customer_ids)))
+customer_id = unique(build_auth_m216_copy$acct_id_code)
+customer_info = data.frame(customer_id, total_trxn_amt=numeric(length(customer_id)), num_of_trxns=numeric(length(customer_id)), amt_per_trxn=numeric(length(customer_ids)))
 #View(customer_info)
-customer_idx = 0
-for (i in length(build_auth_m216_copy)) {
-  accts_info = build_auth_m216_copy
-  cur_acct = customer_info
-  if (accts_info$acct_id_code[i] == cur_acct) {
-    cur_acct = cur_acct$total_trxn_amt + accts_info$trxn_amount
+customer_idx = 1
+for (i in 1:nrow(build_auth_m216_copy)) {
+  to_be_recorded = build_auth_m216_copy[i, 1:6]
+  while (TRUE) {
+    cur_acct = customer_info[customer_idx, 1:4]
+    if (to_be_recorded$acct_id_code == cur_acct$customer_id) {
+      customer_info[customer_idx, 1:4]$total_trxn_amt = cur_acct$total_trxn_amt + to_be_recorded$trxn_amount
+      customer_info[customer_idx, 1:4]$num_of_trxns = cur_acct$num_of_trxns + 1
+      break
+    }
+    else {
+      customer_idx = customer_idx + 1
+    }
   }
-  
 }
+#View(customer_info)
